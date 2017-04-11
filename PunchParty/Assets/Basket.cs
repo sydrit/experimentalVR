@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Basket : MonoBehaviour {
     int count = 0;
-	// Use this for initialization
-	void Start () {
-	
+    GameManager gm;
+    // Use this for initialization
+    void Start () {
+        gm = FindObjectOfType<GameManager>();
 	}
 	
 	// Update is called once per frame
@@ -19,7 +20,9 @@ public class Basket : MonoBehaviour {
         if (other.tag == "ball")
         {
             count++;
+            gm.decrimentBallCount(other.gameObject);
             Destroy(other.gameObject);
+            gm.increaseScore();
             Debug.Log("count: " + count);
         }
     }
